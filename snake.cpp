@@ -1,27 +1,32 @@
 
-#include <iostream>;
-#include <ctime>;
-#include <windows.h>;
-#include <conio.h>;
+#include <iostream>
+#include <ctime>
+#include <windows.h>
+#include <conio.h>
 using namespace std;
-int szer= 15;
-int wys= 30;
+int szer= 30;
+int wys= 15;
 int x= 7;
 int y= 16;
 int owocx= 4;
 int owocy= 17;
 int wynik=0;
+bool koniec = false;
 
 void mapa(){
+system("cls");
+for(int i=0;i<wys;i++){
+if(i>=1){
+    cout<<endl;
+}
 
-for(int i=0;i<30;i++)
-  {
-    for(int j=0;j<15;j++){
-        if(i==0 || i==29 || j==0 || j==14)
+
+    for(int j=0;j<szer;j++){
+        if(i==0 || j==szer-1 || j==0 || i==wys-1)
             cout<<"#";
-        else if(i==y && j==x)
+        else if(j==y && i==x)
             cout<<"%";
-        else if(i==owocy && j==owocx)
+        else if(j==owocy && i==owocx)
             cout<<"O";
         else
             cout<<" ";
@@ -43,22 +48,35 @@ void input (){
 }
 
 void zwrot (){
-if(kierunek=='w') y--;
-if(kierunek=='s') y++;
-if(kierunek=='a') x--;
-if(kierunek=='d') x++;
-if(x==0 || x==14 || y==0 || y==29){ return 0;}
+if(kierunek =='w') x--;
+if(kierunek =='s') x++;
+if(kierunek =='a') y--;
+if(kierunek =='d') y++;
+if(x==0 || x==14 || y==0 || y==29)
+    koniec = true;
 
 if(x==owocx && y==owocy) {
         wynik++;
-        owocx= (rand() % 28)+1
-        owocy= (rand() % 13)+1
+        owocx= (rand() % 28)+1;
+        owocy= (rand() % 13)+1;
 
 
 }
 
 
 }
+int main(){
+srand(time(0));
+while(!koniec){
+    system("cls");
+    mapa();
+    input();
+    zwrot();
+    Sleep(300);
+
+
+}
+cout<<wynik;
 
 
 
@@ -70,5 +88,4 @@ if(x==owocx && y==owocy) {
 
 
 
-
-int main(){}
+}
