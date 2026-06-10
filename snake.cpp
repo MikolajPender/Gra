@@ -11,6 +11,11 @@ int y= 16;
 int owocx= 4;
 int owocy= 17;
 int wynik=0;
+int scianax=1;
+int scianay= 1;
+int scianax2=2;
+int scianay2= 2;
+
 bool koniec = false;
 
 void mapa(){
@@ -28,15 +33,17 @@ if(i>=1){
             cout<<"%";
         else if(j==owocy && i==owocx)
             cout<<"O";
+        else if(j==scianay && i==scianax)
+            cout<<"#";
+        else if(j==scianay2 && i==scianax2)
+            cout<<"#";
         else
             cout<<" ";
-
-
     }
 
 
   }
-
+cout<<endl<<"wynik"<<wynik;
 }
 char kierunek='w';
 void input (){
@@ -57,11 +64,26 @@ if(x==0 || x==14 || y==0 || y==29)
 
 if(x==owocx && y==owocy) {
         wynik++;
-        owocx= (rand() % 28)+1;
-        owocy= (rand() % 13)+1;
+        owocx= (rand() % 13)+1;
+        owocy= (rand() % 28)+1;
+        scianax= (rand() % 13)+1;
+        scianay= (rand() % 28)+1;
+        scianax2= (rand() % 13)+1;
+        scianay2= (rand() % 28)+1;
 
 
 }
+
+
+
+if (scianax==x && scianay==y){
+    koniec = true;
+}
+if (scianax2==x && scianay2==y){
+    koniec = true;
+}
+
+
 
 
 }
@@ -72,20 +94,10 @@ while(!koniec){
     mapa();
     input();
     zwrot();
-    Sleep(300);
+    Sleep(150);
 
 
 }
-cout<<wynik;
-
-
-
-
-
-
-
-
-
 
 
 }
